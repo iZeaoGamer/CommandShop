@@ -1,9 +1,6 @@
 <?php
-
 declare(strict_types=1);
-
 namespace BoxOfDevs\CommandShop\Commands;
-
 use BoxOfDevs\CommandShop\CommandShop;
 use BoxOfDevs\CommandShop\CShopCommand\CShopCommand;
 use BoxOfDevs\CommandShop\CShopCommand\PaymentMethod\EconomyApiMethod;
@@ -13,11 +10,9 @@ use pocketmine\command\PluginCommand;
 use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat as TF;
-
 class CShopManagementCommand extends PluginCommand {
      /** @var CommandShop */
      private $plugin;
-
      public function __construct(CommandShop $owner) {
           parent::__construct("cshop", $owner);
           $this->setDescription("Create, manage and remove 'buyable' commands");
@@ -25,7 +20,6 @@ class CShopManagementCommand extends PluginCommand {
           $this->setPermission("cshop.command.manage");
           $this->plugin = $owner;
      }
-
      private $usages = [
           "add" => "<name> <command>",
           "remove" => "<name>",
@@ -37,7 +31,6 @@ class CShopManagementCommand extends PluginCommand {
           "info" => "<name>",
           "help" => ""
      ];
-
      /**
       * Translates a message from config
       *
@@ -56,7 +49,6 @@ class CShopManagementCommand extends PluginCommand {
           $msg = str_ireplace(array_keys($values), array_values($values), $msg);
           return $msg;
      }
-
      /**
       * Send the usage of a Command to a Player
       *
@@ -66,7 +58,6 @@ class CShopManagementCommand extends PluginCommand {
      private function sendUsage(string $cmd, CommandSender $p): void{
           $p->sendMessage(CommandShop::ERROR . "Usage: /cshop $cmd " . $this->usages[$cmd]);
      }
-
      public function execute(CommandSender $sender, string $commandLabel, array $args) {
           parent::execute($sender, $commandLabel, $args);
           // TODO: Made subcommand classes
@@ -249,6 +240,5 @@ class CShopManagementCommand extends PluginCommand {
                default:
                     return false;
           }
-          break;
      }
 }
